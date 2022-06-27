@@ -1,6 +1,7 @@
 from packaging import version
 from augur.__version__ import __version__ as augur_version
 import sys
+import datetime
 
 min_version = "16.0.0"
 if version.parse(augur_version) < version.parse(min_version):
@@ -11,6 +12,8 @@ if version.parse(augur_version) < version.parse(min_version):
 if not config:
     configfile: "config/config_hmpxv1.yaml"
 
+# the `today` var will be used for writing logs
+today = datetime.date.today()
 build_dir = "results"
 auspice_dir = "auspice"
 
