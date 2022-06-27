@@ -1,0 +1,23 @@
+name: nextstrain-mpx
+channels:
+  - bioconda
+  - conda-forge
+  - anaconda
+  - defaults
+dependencies:
+  - anaconda::python=3.9.10
+  - anaconda::pip=22.0.3
+  # Workflow
+  - bioconda::snakemake=7.3.6
+  # Phylogeny
+  - bioconda::iqtree=2.2.0.3
+  # Misc
+  - bioconda::epiweeks=2.1.4
+  - conda-forge::gzip>=1.6
+  - pip:
+    - nextstrain-augur==16.0.0
+
+# Notes:
+# - nextclade and nextalign: v2 must be manually installed and renamed to nextclade2 and nextalign2
+#     wget -O $CONDA_PREFIX/bin/nextclade2 https://github.com/nextstrain/nextclade/releases/download/2.0.0-beta.5/nextclade-x86_64-unknown-linux-gnu
+#     wget -O $CONDA_PREFIX/bin/nextalign2 https://github.com/nextstrain/nextclade/releases/download/2.0.0-beta.5/nextalign-x86_64-unknown-linux-gnu
