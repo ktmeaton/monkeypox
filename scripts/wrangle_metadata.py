@@ -1,5 +1,6 @@
 import pandas as pd
 import argparse
+import numpy as np
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser(
@@ -22,4 +23,25 @@ if __name__=="__main__":
     metadata.insert(0, "strain", metadata[args.strain_id])
     # metadata["strain"] = metadata[args.strain_id]
 
+    # Remove the year column, because it will break augur filter
+    if "year" in metadata.columns:
+        new_dates = []
+        # Iterate through the `date`` and `year`` fields
+        for s_date, s_year in zip(metadata["date"], metadata["year"]):
+
+            # If date is null, we use the year
+            if pd.isna(s_date) and not pd.isna(s_year):
+                new_dates.append("{}-XX-XX".format(int(s_year)))
+
+            # if date is not null, use it
+            elif not pd.isna(s_date):
+                new_dates.append(s_date)
+
+            # Otherwise, use none
+            else:
+                new_dates.append(None)
+
+        metadata["date"] = new_dates
+        metadata.drop(columns=["year"], inplace=True)
+        
     metadata.to_csv(args.output, sep='\t', index=False)
