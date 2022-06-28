@@ -15,7 +15,7 @@ dependencies:
   - bioconda::epiweeks=2.1.4
   - conda-forge::gzip>=1.6
   - pip:
-    - nextstrain-augur==16.0.0
+    - nextstrain-augur==16.0.1
 
 # Notes:
 # - nextclade and nextalign: v2 must be manually installed and renamed to nextclade2 and nextalign2
